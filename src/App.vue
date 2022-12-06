@@ -10,7 +10,7 @@ export default {
   created() {
 
   },
-  mouunted: {
+  mounted: {
     //axios.get
   },
   methods: {
