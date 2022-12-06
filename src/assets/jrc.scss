@@ -1,0 +1,17 @@
+.jrc {
+  &__button {
+    border: none;
+    outline: none;
+    color: #000;
+    background: #fff;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    margin: 1rem 0;
+    &.full-width {
+      width: 100%;
+    }
+  }
+}
