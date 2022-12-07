@@ -3,15 +3,10 @@
 </template>
 
 <script>
-//import axios from 'axios';
-
 export default {
   name: "App",
-  created() {
-
-  },
   mounted: {
-    //axios.get
+
   },
   methods: {
     confirm_leaving (evt) {

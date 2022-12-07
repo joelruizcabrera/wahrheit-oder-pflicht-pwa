@@ -1,7 +1,7 @@
 <?php
 include 'connectDB.php';
 
-$sql = 'SELECT * from wop_questions';
+$sql = 'SELECT * from wop_questions WHERE wop_question_td = "dare"';
 
 $result = $conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
@@ -10,8 +10,7 @@ foreach ($result as $row) {
     $return[] = [
         'id' => $row['wop_question_id'],
         'text' => $row['wop_question_text'],
-        'td' => $row['wop_question_td'],
-        'mode' => json_encode($row['wop_quesion_mode'])
+        'mode' => json_decode($row['wop_quesion_mode'], true)
     ];
 }
 $dbh = null;
