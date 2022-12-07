@@ -4,9 +4,4 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
-const app = createApp(App)
-
-app.use(store)
-    .use(router)
-
-app.mount('#app')
+createApp(App).use(store).use(router).mount('#app')

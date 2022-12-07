@@ -11,7 +11,7 @@ foreach ($result as $row) {
         'id' => $row['wop_question_id'],
         'text' => $row['wop_question_text'],
         'td' => $row['wop_question_td'],
-        'mode' => json_encode($row['wop_quesion_mode'])
+        'mode' => json_decode($row['wop_quesion_mode'], true)
     ];
 }
 $dbh = null;

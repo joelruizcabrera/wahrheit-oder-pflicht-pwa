@@ -48,7 +48,6 @@
   &__question {
     margin-top: 3rem;
     &__actions {
-
       margin-top: 4rem;
       display: flex;
       flex-direction: column;
@@ -71,6 +70,10 @@ export default {
         no: ''
       }
     }
+  },
+  created() {
+    let quest = new Questions()
+    quest.fetchQuestions("https://wop.joelruizcabrera.com")
   },
   mounted() {
     this.initGame()

@@ -1,22 +1,21 @@
 <template>
   <div class="game_configuration">
     <Transition name="fade">
-     <div class="game_configuration__modes" v-if="this.$parent.progress.step === 1">
-      <div
-          :class="'game_configuration__modes__item item-' + mode.id"
-          v-for="mode in gameModes"
-          :key="mode.id"
-          @click="changeModi(mode.id)"
-          :style="'background: linear-gradient(112deg, ' + mode.colorGrade.from + ' 0%, ' + mode.colorGrade.to + ' 100%);'"
-      >
+      <div class="game_configuration__modes" v-if="this.$parent.progress.step === 1">
+        <div
+            :class="'game_configuration__modes__item item-' + mode.id"
+            v-for="mode in gameModes"
+            :key="mode.id"
+            @click="changeModi(mode.id)"
+            :style="'background: linear-gradient(112deg, ' + mode.colorGrade.from + ' 0%, ' + mode.colorGrade.to + ' 100%);'"
+        >
         <span style="z-index: 3;">
           {{mode.name}}
         </span>
-        <div class="game_configuration__modes__item__emoji">
-          {{mode.emoji}}
+          <div class="game_configuration__modes__item__emoji" v-html="mode.emoji">
+          </div>
         </div>
       </div>
-    </div>
     </Transition>
     <Transition name="fade">
       <div class="game_configuration__start" v-if="this.config.players.length >= 3">
@@ -54,7 +53,7 @@
 </style>
 <script>
 import { uuid } from 'vue-uuid';
-
+import {GameMode} from "@/engine/GameMode";
 export default {
   name: "StartGameConfiguration",
   data() {
@@ -65,6 +64,13 @@ export default {
         players: []
       },
     }
+  },
+  created() {
+    let game = new GameMode("https://wop.joelruizcabrera.com")
+    game.setGameModeStore()
+    setInterval(() => {
+      game.setGameModeStore()
+    }, 10000 )
   },
   computed: {
     gameModes() {
@@ -79,7 +85,6 @@ export default {
         this.$parent.progress.step = 2
         this.$parent.progress.description = "Trage nun die Spieler im unten stehenden Feld ein. Mindestens 3 Spieler."
       }, 500)
-      console.log(id)
     },
     setPlayer() {
       let newPlayer = this.inputPlayer;
@@ -89,12 +94,10 @@ export default {
         name: newPlayer,
         points: 0
       })
-      console.log(this.config.players)
     },
     removePlayer(id) {
       const player = this.config.players.findIndex((obj) => obj.id === id);
       this.config.players.splice(player, 1)
-      console.log(this.config.players)
     },
     startGame() {
       let appInformations = {
